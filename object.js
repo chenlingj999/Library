@@ -77,18 +77,13 @@ close.addEventListener('click', () => {
 });
 
 //handler for submit btn
-submit.addEventListener("click", (e) => {
+dialog.addEventListener("submit", (e) => {
     e.preventDefault();
 
     let title = document.getElementById('title').value;
     let author = document.getElementById('author').value;
     let pageNum = document.getElementById('pageNum').value;
     let hasRead = document.getElementById('hasRead').value;
-
-    if (!(title && author && pageNum)) {
-        console.log('fields are not filled properly')
-        return;
-    }
 
     var book = new Book(title, author, pageNum, hasRead);
 
