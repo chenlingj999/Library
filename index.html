@@ -8,28 +8,28 @@
     <script src="object.js" defer></script>
 </head>
 <body>
-    <dialog>
+    <dialog id="mydialog">
         <form action="#" method="get">
             <h2>New Book Information</h2>
             <div>
                 <label for="title">Title: </label>
-                <input type="text" name="title" id="title">
+                <input type="text" name="title" id="title" required>
             </div>
             <div>
                 <label for="author">Author: </label>
-                <input type="text" name="author" id="author">
+                <input type="text" name="author" id="author" required>
             </div>
             <div>
                 <label for="pageNum">Page Number: </label>
-                <input type="number" name="pageNum" id="pageNum">
+                <input type="number" name="pageNum" id="pageNum" required>
             </div>
             <div>
                 <label for="hasRead">Has Read: </label>
                 <input type="checkbox" name="hasRead" id="hasRead">
             </div>
             <div>
-                <button formmethod="dialog">Cancel</button>
-                <button id="confirmBtn">Submit</button>
+                <button formmethod="dialog" id="closeBtn">Cancel</button>
+                <input type="submit" id="confirmBtn" value="Submit">
             </div>
         </form>
     </dialog>
@@ -38,7 +38,7 @@
         <div id="library">
 
         </div>
-        <button>Add New Book</button>
+        <button id="addBook">Add New Book</button>
     </div>
 </body>
 </html>

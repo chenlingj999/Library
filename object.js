@@ -61,6 +61,44 @@ function displayBook() {
     }
 }
 
+const open = document.getElementById("addBook");
+const close = document.getElementById("closeBtn");
+const submit = document.getElementById("confirmBtn");
+const dialog = document.getElementById("mydialog");
+
+//opens dialog
+open.addEventListener('click', () => {
+    dialog.showModal();
+});
+
+//closes dialog
+close.addEventListener('click', () => {
+    dialog.close();
+});
+
+//handler for submit btn
+submit.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    let title = document.getElementById('title').value;
+    let author = document.getElementById('author').value;
+    let pageNum = document.getElementById('pageNum').value;
+    let hasRead = document.getElementById('hasRead').value;
+
+    if (!(title && author && pageNum)) {
+        console.log('fields are not filled properly')
+        return;
+    }
+
+    var book = new Book(title, author, pageNum, hasRead);
+
+    addBookToLibrary(book);
+
+    displayBook();
+
+    dialog.close();
+});
+
 //test
 var b1 = new Book(1, 1, 1, true);
 var b2 = new Book(2, 2, 2, false);
