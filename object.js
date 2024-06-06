@@ -22,7 +22,7 @@ function addBookToLibrary(book) {
 }
 
 //create book cell to add to library
-function createBookCell(book) {
+function createBookCell(book, index) {
     if (book instanceof Book) {
         var cell = document.createElement('div');
         cell.className = 'book';
@@ -31,16 +31,26 @@ function createBookCell(book) {
         var author = document.createElement('p');
         var pageNum = document.createElement('p');
         var hasRead = document.createElement('p');
+        var removeBook = document.createElement('button');
 
         title.textContent = 'Title: ' + book.title;
         author.textContent = 'Author: ' + book.author;
         pageNum.textContent = 'Page Number: ' + book.pageNum;
         hasRead.textContent = 'Has Read: ' + (book.hasRead ? 'Yes' : 'No');
+        removeBook.textContent = 'Remove Book';
+
+        //add the function to the remove button
+        removeBook.addEventListener('click', () => {
+            //remove from array
+            myLibrary.splice(index, 1);
+            displayBook();
+        });
 
         cell.appendChild(title);
         cell.appendChild(author);
         cell.appendChild(pageNum);
         cell.appendChild(hasRead);
+        cell.appendChild(removeBook);
 
         return cell;
     }
@@ -53,10 +63,12 @@ function displayBook() {
     //Make sure library exists
     if (!library) console.error('No library found');
 
+    let index = 0;
     for (var book of myLibrary) {
-        bookCell = createBookCell(book);
+        bookCell = createBookCell(book, index);
         if (bookCell) {
             library.appendChild(bookCell);
+            index++;
         }
     }
 }
