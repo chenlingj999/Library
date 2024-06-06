@@ -31,13 +31,22 @@ function createBookCell(book, index) {
         var author = document.createElement('p');
         var pageNum = document.createElement('p');
         var hasRead = document.createElement('p');
+        var readBtn = document.createElement('button');
         var removeBook = document.createElement('button');
 
         title.textContent = 'Title: ' + book.title;
         author.textContent = 'Author: ' + book.author;
         pageNum.textContent = 'Page Number: ' + book.pageNum;
         hasRead.textContent = 'Has Read: ' + (book.hasRead ? 'Yes' : 'No');
+        readBtn.textContent = 'Mark as ' + (book.hasRead ? 'Not Read' : 'Read');
         removeBook.textContent = 'Remove Book';
+
+        //add function to mark book as read/unread
+        readBtn.addEventListener('click', () => {
+            //make sure to change attrribute of book itself and not just on DOM element
+            book.hasRead = !book.hasRead;
+            hasRead.textContent = 'Has Read: ' + (book.hasRead ? 'Yes' : 'No');
+        });
 
         //add the function to the remove button
         removeBook.addEventListener('click', () => {
@@ -50,6 +59,7 @@ function createBookCell(book, index) {
         cell.appendChild(author);
         cell.appendChild(pageNum);
         cell.appendChild(hasRead);
+        cell.appendChild(readBtn);
         cell.appendChild(removeBook);
 
         return cell;
